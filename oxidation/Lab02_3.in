@@ -1,0 +1,38 @@
+go athena
+
+# Lev Oleynik
+# Define Mesh (x-direction)
+line x loc=0.00 spac=1.00
+line x loc=25 spac=0.5
+line x loc=50.00 spac=1.00
+
+# Define Mesh (y-direction
+line y loc=0.00 spac=0.20
+line y loc=1 spac=0.1
+line y loc=10.00 spac=1
+
+# Create Mesh Initialize - Define Substrate
+init silicon orientation=100 boron resistivity=3000 two.d
+
+# Wet Oxidation
+method compress
+diffus time=30 minutes temp=1100 weto2 press=1
+
+# etch
+etch oxide left p1.x=25
+
+# save first state
+structure outfile=Lab02_3.1.str
+
+# Second oxidation
+method compress
+diffus time=30 minutes temp=1100 weto2 press=1
+
+# Saving file structure
+structure outfile=Lab02_3.2.str
+
+tonyplot Lab02_3.2.str
+#extract name="oxide_thickness" thickness oxide mat.occno=1 x.val=0.5
+
+# exit Athena
+quit

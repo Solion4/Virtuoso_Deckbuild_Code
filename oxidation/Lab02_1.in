@@ -1,0 +1,26 @@
+go athena
+
+# Lev Oleynik
+# define mesh substrate
+line x loc=0.0 spac=0.10
+line x loc=1.0 spac=0.10
+line y loc=0.0 spac=0.01
+line y loc=2.0 spac=0.10
+
+# Generate Silicon (same as in part 1)
+init silicon orientation=100 boron resistivity=300 two.d
+
+# Dry Oxidation
+method compress
+diffus time=10 minutes temp=1100 dryo2 press=1 
+
+# Wet Oxidation
+method compress
+diffus time=90 minutes temp=1100 weto2 press=1 
+
+# Use extract to print oxide thickness
+extract name="oxide_thickness" thickness oxide mat.occno=1 x.val=0.5
+
+structure outfile=Lab02_1.str
+
+quit
