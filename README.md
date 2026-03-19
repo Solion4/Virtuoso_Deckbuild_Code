@@ -1,12 +1,11 @@
 # Semiconductor Device Fabrication & TCAD Simulation
 
 ## Overview
-This repository serves as a comprehensive overview of the semiconductor engineering process, bridging the gap between theoretical TCAD process modeling and physical cleanroom fabrication. It highlights complete end-to-end workflows, from simulating ion implantation and etching profiles in Silvaco Deckbuild to physical metrology and electrical characterization of MOSFETs fabricated in the CNM2 Lab.
+This repository serves as a comprehensive overview of the semiconductor engineering process.
 
 ---
 
 ## Part 1: TCAD Process Modeling & Simulation (Silvaco Deckbuild)
-*In this section, simulated semiconductor manufacturing processes are analyzed to predict physical device characteristics and optimize process parameters prior to physical fabrication.*
 
 ### 1. Resistor Design & Electrical Analysis
 **Custom Serpentine Resistor Design:** Layout and simulation of a custom serpentine resistor to optimize sheet resistance within a constrained physical footprint.
