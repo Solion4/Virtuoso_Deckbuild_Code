@@ -1,0 +1,120 @@
+go athena
+
+# Lev Oleynik
+# Prof. Seker
+# EEC 146A
+# 2/25/2026
+# Final Lab Design
+# SiD: 921-25-1116
+# ---------------- Mask 1 ----------------------
+
+# Define 60um long Silicon Substrate
+line x loc=0 spac=1
+line x loc=60 spac=1
+line y loc=0 spac=0.05
+line y loc=10 spac=0.5
+
+# Initialize P-type Silicon substrate
+init silicon c.boron=1e14 orientation=100
+
+# Grow Oxide
+deposit oxide thick=0.5 
+
+# Deposit Photoresist (Mask 1)
+deposit photoresist thick=0.5 divisions=2
+
+# Apply Mask 1, etching photoresist
+etch photoresist start x=5 y=-10
+etch continue x=55 y=-10
+etch continue x=55 y=10
+etch done x=5 y=10
+
+# Etch uncovered O
+# ---------------- Mask 2 ----------------------
+xide
+etch oxide 
+
+strip photoresist
+
+# Implant Phosphorus (tune based on desired resistance)
+implant phosphor dose=1.0685e16 energy=50 tilt=0 rotation=0 crystal 
+
+# Drive-in dopants
+method fermi 
+diffus time=20 minutes temp=1200
+
+struct outf=Lab08_Design_Mask1.str
+
+# ---------------- Mask 2 ----------------------
+
+# Grow Oxide
+deposit oxide thick=0.5 
+
+# Deposit Photoresist (Mask 2)
+deposit photoresist thick=0.5 divisions=2
+
+# Etch based on mask specifications
+etch photoresist start x=6 y=-10
+etch continue x=7 y=-10
+etch continue x=7 y=10
+etch done x=6 y=10
+
+etch photoresist start x=53 y=-10
+etch continue x=54 y=-10
+etch continue x=54 y=10
+etch done x=53 y=10
+
+etch oxide
+
+strip photoresist
+
+struct outf=Lab08_Design_Mask2.str
+
+# ---------------- Mask 3 ----------------------
+
+deposit aluminum thick=1 divisions=4
+
+# Deposit Photoresist (Mask 3)
+deposit photoresist thick=0.5 divisions=2
+
+# Etch photoresist according to mask
+etch photoresist start x=10 y=-10
+etch continue x=50 y=-10
+etch continue x=50 y=10
+etch done x=10 y=10
+
+etch aluminum
+
+strip photoresist
+
+electrode name=anode x=5
+electrode name=cathode x=55
+
+struct outf=Lab08_Design_Mask3.str
+
+tonyplot Lab08_Design_Mask1.str Lab08_Design_Mask2.str Lab08_Design_Mask3.str 
+
+# --------- Device Characterization ----------
+go atlas
+
+init inf=Lab08_Design_Mask3.str
+
+models bipolar
+methods newton
+solve initial
+
+# 1. Open the log file to record the sweep for the I-V Curve
+log outfile=Lab08_DC.log
+
+# 2. Sweep voltage from 0V to 1V in 0.1V steps for a clean I-V line
+solve vanode=0.0 vstep=0.1 vfinal=1.0 name=anode
+
+# 3. Initialize extract with the log file
+extract init inf="Lab08_DC.log"
+
+# 4. Extract Resistance (V/I) at 1.0V
+extract name="Resistance" y.val from curve(v."anode", v."anode"/i."anode") where x.val=1.0
+
+tonyplot Lab08_DC.log
+
+quit

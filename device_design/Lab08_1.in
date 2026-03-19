@@ -1,0 +1,50 @@
+go athena
+
+init inf=Lab07_2.4.str
+
+# Define Electrode
+electrode name=Source x=0.00 
+electrode name=Gate x=25.00 
+electrode name=Drain x=50.00 
+
+struct outf=Lab08_1.str
+
+#tonyplot Lab07_2.4.str Lab08_1.str
+
+go atlas
+
+init inf=Lab08_1.str
+
+models bipolar 
+methods newton
+
+solve initial
+save outf=Lab08_1.0.str
+tonyplot Lab08_1.0.str
+
+log outfile=Lab08_1.log
+
+solve vdrain=5
+solve vgate=-2 vstep=0.25 vfinal=5 name=gate
+
+log off
+
+tonyplot Lab08_1.log
+
+# DC Characterization
+# Drain sweep
+log outfile=Lab08_1_5.log
+solve vgate=5
+solve vdrain=0 vstep=0.25 vfinal=5 name=drain
+
+log outfile=Lab08_1_3.log
+solve vgate=3
+solve vdrain=0 vstep=0.25 vfinal=5 name=drain
+
+log outfile=Lab08_1_1.log
+solve vgate=1
+solve vdrain=0 vstep=0.25 vfinal=5 name=drain
+
+tonyplot -overlay Lab08_1_5.log Lab08_1_3.log Lab08_1_1.log
+
+quit
