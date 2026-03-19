@@ -1,0 +1,18 @@
+go athena
+
+init inf=Lab03_1.str
+
+# Wet Etch
+rate.etch machine=Wet_Etch_Machine_Oxide oxide u.m wet.etch isotropic=0.1 
+
+# Machine Etch
+etch machine=Wet_Etch_Machine_Oxide time=10 minutes 
+
+# Strip PR
+strip
+
+struct outf=Lab04_8.str
+
+tonyplot Lab03_1.str Lab04_8.str
+
+quit

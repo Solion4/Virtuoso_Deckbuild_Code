@@ -1,0 +1,40 @@
+go athena
+
+init inf=Lab02_2.str
+
+# Define Etch Machine
+rate.etch machine=Dry_Etch_Machine_Oxide oxide u.m rie isotropic=0.05 directional=0.13 chemical = 0.30 divergence=0.2
+
+# Depostion Photoresist
+deposit photoresist thick=1 div=30
+
+# Etch Any Shape
+etch photoresist start x = 0 y = -2
+etch cont x = 0 y = 2
+etch cont x = 20 y = 2
+etch done x = 20 y = -2
+
+etch photoresist start x = 21 y = -2
+etch cont x = 21 y = 2
+etch cont x = 50 y = 2
+etch done x = 50 y = -2
+#etch cont x = 21 y = -2
+#etch cont x = 21 y = 2
+#etch done x = 50 y = 2
+#etch done x = 50 y = -2
+
+# Use "Any Shape" to create mask
+#etch photoresist start x=0 y=-10 end x=10 y=10
+
+#etch photoresist start x=11 y=-10 end x=50 y=10
+
+# Etch Machine
+etch machine=Dry_Etch_Machine_Oxide time = 5 minutes
+
+strip 
+
+struct outf=Lab04_13.str
+
+tonyplot Lab02_2.str Lab04_13.str
+
+quit

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE db2vwf-experiment SYSTEM "db2vwf-experiment.dtd">
+<db2vwf-experiment base-dir="." change-date="Tue Jan 27 18:16:42 2026&#xA;" creation-date="Tue Jan 27 18:16:42 2026&#xA;" description="" dtd-version="106" experiment-status="Preparing" experiment-type="db2vwf" experiment-user="" file-version="106" name="" remote-host=""><db2vwf-deck filename="Lab07_5.xml"><line-id id="2"/>go athena
+<line-id id="1"/>
+<line-id id="3"/>init inf=Lab05_2.3.str
+<line-id id="15"/>
+<line-id id="4"/># Pattern photoresist
+<line-id id="18"/>deposit photoresist thick=0.5
+<line-id id="49"/>
+<line-id id="30"/>struct outf=Lab07_5_PR.str
+<line-id id="50"/>
+<line-id id="31"/># Etch Any Shape
+<line-id id="32"/>etch photoresist start x = 9.65 y = -2
+<line-id id="33"/>etch cont x = 9.65 y = 2
+<line-id id="34"/>etch cont x = 15.5 y = 2
+<line-id id="35"/>etch done x = 15.5 y = -2
+<line-id id="36"/>
+<line-id id="37"/>etch photoresist start x = 34.5 y = -2
+<line-id id="38"/>etch cont x = 34.5 y = 2
+<line-id id="39"/>etch cont x = 40.5 y = 2
+<line-id id="40"/>etch done x = 40.5 y = -2
+<line-id id="48"/>
+<line-id id="44"/>struct outf=Lab07_5_PR_etched.str
+<line-id id="24"/># For 0.1 um, we have 1 um/min, meaning we do 6 seconds
+<line-id id="5"/># Monte Carlo Machine Deposition
+<line-id id="6"/>rate.depo machine=Monte_Carlo_Machine_Pt aluminum a.s sigma.dep=0.2 monte1 dep.rate=1.0 stick.coef=1 angle1=0 mcseed=5
+<line-id id="7"/># Machine Deposition
+<line-id id="8"/>deposit machine=Monte_Carlo_Machine_Pt time=2000 seconds n.particle=300 divisions=10
+<line-id id="46"/>
+<line-id id="45"/>struct outf=Lab07_5_without_strip.str
+<line-id id="47"/>
+<line-id id="9"/>strip photoresist
+<line-id id="27"/>
+<line-id id="10"/>struct outf=Lab07_5_stripped.str
+<line-id id="11"/>
+<line-id id="12"/>tonyplot Lab05_2.3.str Lab07_5_PR.str Lab07_5_PR_etched.str Lab07_5_without_strip.str Lab07_5_stripped.str
+<line-id id="13"/>
+<line-id id="14"/>quit</db2vwf-deck></db2vwf-experiment>
