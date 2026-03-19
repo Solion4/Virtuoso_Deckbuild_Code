@@ -1,0 +1,28 @@
+go athena
+
+init inf=Lab02_2.str
+
+# Etch Any Shape
+#etch oxide start x = 10 y = -2
+#etch cont x = 10 y = 2
+#etch cont x = 40 y = 2
+#etch done x = 40 y = -2
+
+# Predeposition
+# Standard dose: 10 mins @ 1100C
+method fermi 
+diffus time=10 minutes temp=1100 nitro press=1 c.phosphor=1e19 
+
+extract name="Vertical_Junction_Depth (after predopostion)" xj silicon mat.occno=1 x.val=25 junc.occno=1
+
+# Drive-In
+method fermi 
+diffus time=30 minutes temp=1367.8 nitro press=1 
+
+structure outfile=Lab05_Design_1um.str
+
+extract name="Vertical_Junction_Depth" xj silicon mat.occno=1 x.val=25 junc.occno=1
+
+tonyplot Lab05_Design_1um.str
+
+quit

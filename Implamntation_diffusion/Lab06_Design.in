@@ -1,0 +1,28 @@
+go athena
+
+init inf=Lab02_2.str
+
+# Implantation
+implant phosphorus dose=0.62e11 energy=1340 tilt=0 rotation=0 crystal 
+
+Struct outf= Lab06_Design_1.str
+
+extract name="Nd" max.conc impurity="Active Phosphorus" material="Silicon" y.min=-1 x.max=10 y.max=10 x.min=0 x.max=50
+
+extract name="Nd X position" x.pos
+extract name="Nd Y position" y.pos
+
+# Anneal
+method full.cpl 
+diffus time=5 minutes temp=1100 nitro press=1 
+
+Struct outf = Lab06_Design_2.str
+
+extract name="Nd" 2d.max.conc impurity="Active Phosphorus" material="Silicon" y.min=-1 x.max=10 y.max=10 x.min=0 x.max=50
+
+extract name="Nd X position" x.pos
+extract name="Nd Y position" y.pos
+
+tonyplot Lab06_Design_1.str Lab06_Design_2.str
+
+quit

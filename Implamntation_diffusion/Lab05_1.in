@@ -1,0 +1,18 @@
+go athena
+
+init inf=Lab04_8.str
+
+# Predeposition
+method fermi 
+diffus time=1 minutes temp=1100 nitro press=1 c.phosphor=1e19 
+
+struct outf=Lab05_1.str
+
+# Vertical extraction
+extract name="Extract_vert" xj material="Silicon" mat.occno=1 x.val=10 junc.occno=1
+# Horizontal extraction
+extract name="Extract_hor" xj material="Silicon" mat.occno=1 y.val=0.4 junc.occno=2
+
+tonyplot Lab04_8.str Lab05_1.str
+
+quit
