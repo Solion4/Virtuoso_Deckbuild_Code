@@ -1,0 +1,12 @@
+go athena
+
+init inf=Lab05_2.3.str
+
+# Conformal Deposition
+deposit aluminum thick=0.5 divisions=10 
+
+struct outf=Lab07_1.str
+
+tonyplot Lab05_2.3.str Lab07_1.str
+
+quit

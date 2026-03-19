@@ -1,0 +1,14 @@
+go athena
+
+init inf=Lab05_2.3.str
+
+# Monte Carlo Machine Deposition
+rate.depo machine=Monte_Carlo_Machine_Al aluminum a.s sigma.dep=0.2 monte1 dep.rate=1.0 stick.coef=1 angle1=0 mcseed=5
+# Machine Deposition
+deposit machine=Monte_Carlo_Machine_Al time=5000 seconds n.particle=10000 divisions=10 
+
+struct outf=Lab07_4.str
+
+tonyplot Lab05_2.3.str Lab07_4.str
+
+quit

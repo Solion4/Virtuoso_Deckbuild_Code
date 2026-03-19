@@ -1,0 +1,22 @@
+go athena
+
+init inf=Lab02_2.str
+
+# Etch Any Shape
+etch oxide start x = 0 y = -2
+etch cont x = 1 y = -2
+etch cont x = 5 y = -2
+etch cont x = 5 y = 2
+etch cont x = 20 y = 2
+etch cont x = 20 y = -2
+etch cont x = 30 y = -2
+etch cont x = 30 y = 2
+etch cont x = 45 y = 2
+etch cont x = 45 y = -2
+etch done x = 50 y = -2
+
+struct outf=Lab04_7.str
+
+tonyplot Lab02_2.str Lab04_6.str
+
+quit

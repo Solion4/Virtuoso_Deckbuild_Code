@@ -1,0 +1,11 @@
+go athena
+
+init inf=Lab02_3.2.str
+# Etch all
+etch oxide all 
+
+struct outf=Lab04_1.str
+
+tonyplot Lab02_3.2.str Lab04_1.str
+
+quit

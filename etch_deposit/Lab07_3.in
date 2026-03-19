@@ -1,0 +1,15 @@
+go athena
+
+init inf=Lab05_2.3.str
+
+# CVD Machine Deposition
+rate.depo machine=CVD_Machine_Al aluminum a.s cvd dep.rate=1.0 step.cov=0.8
+
+# Machine Deposition
+deposit machine=CVD_Machine_Al time=5000 seconds divisions=10 
+
+struct outf=Lab07_3.str
+
+tonyplot Lab05_2.3.str Lab07_3.str
+
+quit
